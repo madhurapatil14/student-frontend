@@ -8,7 +8,7 @@ const StudentsList = () => {
   useEffect(() => {
     const fetchStudents = async () => {
       try {
-        const res = await axios.get("https://student-backend-1-lor9.onrender.com");
+        const res = await axios.get("/api/students");
         setStudents(res.data);
       } catch (err) {
         console.error("Error fetching students:", err);
@@ -29,7 +29,7 @@ const StudentsList = () => {
           <tr>
             <th style={{ border: "1px solid #ccc", padding: "8px" }}>Name</th>
             <th style={{ border: "1px solid #ccc", padding: "8px" }}>Email</th>
-            <th style={{ border: "1px solid #ccc", padding: "8px" }}>Phone</th>
+            <th style={{ border: "1px solid #ccc", padding: "8px" }}>Course</th>
           </tr>
         </thead>
         <tbody>
@@ -37,7 +37,7 @@ const StudentsList = () => {
             <tr key={s._id}>
               <td style={{ border: "1px solid #ccc", padding: "8px" }}>{s.name}</td>
               <td style={{ border: "1px solid #ccc", padding: "8px" }}>{s.email}</td>
-              <td style={{ border: "1px solid #ccc", padding: "8px" }}>{s.phone}</td>
+              <td style={{ border: "1px solid #ccc", padding: "8px" }}>{s.course}</td>
             </tr>
           ))}
         </tbody>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import axios from "axios";
 
-function StudentForm() {
+function AddStudent() {
   const [formData, setFormData] = useState({
     name: "",
     roll: "",
@@ -12,24 +13,18 @@ function StudentForm() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
- const handleSubmit = (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post("/api/students/add", formData);
 
-  // Get existing students from localStorage or an empty array
-  const existing = JSON.parse(localStorage.getItem("students")) || [];
-
-  // Add the new student
-  const updated = [...existing, formData];
-
-  // Save it back
-  localStorage.setItem("students", JSON.stringify(updated));
-
-  alert("Student Registered Successfully!");
-
-  // Clear the form
-  setFormData({ name: "", roll: "", course: "", email: "" });
-};
-
+      alert("Student Registered Successfully!");
+      setFormData({ name: "", roll: "", course: "", email: "" });
+    } catch (error) {
+      console.error("Error registering student:", error);
+      alert("Error connecting to backend");
+    }
+  };
 
   return (
     <div style={{ textAlign: "center", marginTop: "50px" }}>
@@ -61,4 +56,4 @@ const btnStyle = {
   borderRadius: "4px",
 };
 
-export default StudentForm;
+export default AddStudent;
