@@ -16,7 +16,8 @@ function AddStudent() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("/api/students/add", formData);
+      await axios.post("https://student-backend-r6m2.onrender.com/api/students/add", formData);
+
 
       alert("Student Registered Successfully!");
       setFormData({ name: "", roll: "", course: "", email: "" });

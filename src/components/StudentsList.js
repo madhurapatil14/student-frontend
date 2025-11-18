@@ -8,7 +8,8 @@ const StudentsList = () => {
   useEffect(() => {
     const fetchStudents = async () => {
       try {
-        const res = await axios.get("/api/students");
+        const res = awaitaxios.get("https://student-backend-r6m2.onrender.com/api/students");
+
         setStudents(res.data);
       } catch (err) {
         console.error("Error fetching students:", err);
